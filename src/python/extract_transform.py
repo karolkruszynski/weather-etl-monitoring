@@ -23,9 +23,10 @@ def fetch_data():
         })
     else:
         print(f"Error for city {city}: {response.status_code}")
+    return data
 
-        df = pd.DataFrame(data)
-        df.to_csv("weather_data.csv", index=False)
 
 if __name__ == "__main__":
-    fetch_data()
+    weather_data = fetch_data()
+    df = pd.DataFrame(weather_data)
+    df.to_csv("weather_data.csv", index=False)
