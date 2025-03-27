@@ -1,3 +1,4 @@
 echo ".env" >> .gitignore
 echo ".idea/" >> .gitignore
-
+.idea/
+*.iml
