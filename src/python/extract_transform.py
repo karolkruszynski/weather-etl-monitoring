@@ -1,8 +1,11 @@
+import os
+from dotenv import load_dotenv
 import pandas as pd
 import requests
 import pandas
 
-API_KEY =
+load_dotenv()   # Load variable from .env
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 CITIES = ["Warsaw", "Berlin", "Paris"]
 API_URL = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
 
