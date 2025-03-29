@@ -9,16 +9,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - db_data:/var/lib/postgresql/data
+      - ./src/sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
   grafana:
     image: grafana/grafana
@@ -26,9 +18,7 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-    depends_on:
-      - prometheus
 
 volumes:
-  postgres_data:
+  db_data:
   grafana_data:
